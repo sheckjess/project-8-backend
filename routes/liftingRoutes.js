@@ -16,6 +16,13 @@ router.get('/', (req,res) => {
       })
 })
 
+router.get('/specific/:id', (req,res) => {
+  Lifting.findById(req.params.id)
+      .then((data)=> {
+          res.json(data);
+      })
+})
+
 //POSTS ----------------------------
 router.post('/add', (req,res) => {
   var newLift = Lifting(req.body)
@@ -25,14 +32,19 @@ router.post('/add', (req,res) => {
 //PUTS -----------------------------
 router.put('/update/:id', (req,res) => {
   console.log(req.params.id)
-  res.send(`updating document at ${req.params.id}`)
+  Lifting.findByIdAndUpdate(req.params.id, req.body)
+    .then(()=> {
+      res.send('Updated lifting event.')
+    })
 })
 
 //DELETES --------------------------
 router.delete('/delete/:id', (req,res) => {
   console.log(req.params.id)
-  res.send(`deleting document at ${req.params.id}`)
+  Lifting.findByIdAndDelete(req.params.id)
+    .then(()=> {
+      res.send('Deleted lifting event.')
+    })
 })
-
 
 module.exports = router
