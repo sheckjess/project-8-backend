@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const cors = require('cors')
 const dotenv = require('dotenv').config()
 
@@ -8,8 +9,14 @@ app.use(express.json());
 //app.use(cors())
 app.set("json spaces", 4);
 
-app.get("/", (req, res) => {
-  res.send('Root') //Documentation for use later...
+app.get('/', (req, res) => {
+  res.redirect('/documentation')
+})
+
+app.get("/documentation", (req, res) => {
+  res.sendFile(path.join(__dirname + '/documentation.html'), (err)=> {
+    if (err) console.log(err);
+  });
 });
 
 app.use("/cardio", require("./routes/cardioRoutes"));

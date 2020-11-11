@@ -23,8 +23,16 @@ router.post('/add', (req,res) => {
 })
 
 //PUTS -----------------------------
-
+router.put('/update/:id', (req,res) => {
+  console.log(req.params.id)
+  res.send(`updating document at ${req.params.id}`)
+})
 
 //DELETES --------------------------
+router.delete('/delete/:id', (req,res) => {
+  console.log(req.params.id)
+  res.send(`deleting document at ${req.params.id}`)
+})
+
 
 module.exports = router
