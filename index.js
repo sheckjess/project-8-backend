@@ -6,7 +6,7 @@ const dotenv = require('dotenv').config()
 //Middleware and MW settings
 const app = express();
 app.use(express.json());
-//app.use(cors())
+app.use(cors())
 app.set("json spaces", 4);
 
 app.get('/', (req, res) => {
